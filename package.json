@@ -1,0 +1,15 @@
+{
+  "name": "pine",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "@rails/ujs": "^6.0.3",
+    "@rails/webpacker": "^5.1.1",
+    "bs-custom-file-input": "^1.3.4",
+    "trix": "^1.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

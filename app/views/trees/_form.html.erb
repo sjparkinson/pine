@@ -1,0 +1,18 @@
+<%= form.text_field :common_name, help: "This is the plain english name of the tree." %>
+<%= form.text_field :scientific_name, help: "This is the Latin botanical tree name, e.g. Pinus nigra." %>
+
+<div class="form-group">
+    <label class="sr-only" for="tree_content">Information</label>
+    <%= form.hidden_field :content %>
+    <trix-editor input="tree_content" class="trix-content form-control"></trix-editor>
+</div>
+
+<%= form.file_field :images, multiple: true, accept: "image/png,image/gif,image/jpeg" %>
+
+<% if @tree.images.attached? %>
+<% @tree.images.each do |image| %>
+<%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+<% end %>
+<% end %>
+
+<%= form.number_field :openstreetmap_node, label: "OpenStreetMap Node", help: "The ID of this tree's OpenStreetMap node, e.g. <a href=\"https://www.openstreetmap.org/node/7545909354\">7545909354</a>.".html_safe %>

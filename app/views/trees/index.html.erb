@@ -1,0 +1,24 @@
+<h2>Trees</h2>
+
+<table class="table mt-4">
+    <caption>List of all trees on Pine</caption>
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Common name</th>
+            <th scope="col">Added by</th>
+            <th scope="col">Last updated</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @trees.each do |tree| %>
+        <tr>
+            <td><%= link_to tree.common_name, tree %></td>
+            <td><%= tree.user.display_name %></td>
+            <td><%= time_ago_in_words tree.updated_at %> ago</td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to 'Add a tree', new_tree_path, class: "btn btn-secondary" %>
