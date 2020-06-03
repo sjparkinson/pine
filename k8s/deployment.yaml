@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pine
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pine
+      app.kubernetes.io/part-of: pine
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pine
+        app.kubernetes.io/part-of: pine
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - pine
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: pine
+          image: docker.pkg.github.com/sjparkinson/pine/pine:latest
+          envFrom:
+            secretRef: pine
+          env:
+            - name: PAILS_ENV
+              value: production
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+          livenessProbe: &healthcheck
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            timeoutSeconds: 3
+          readinessProbe:
+            <<: *healthcheck
+      imagePullSecrets:
+        - name: github

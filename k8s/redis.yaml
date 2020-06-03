@@ -1,0 +1,103 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pine-redis-config
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
+    app.kubernetes.io/part-of: pine
+data:
+  # Use the following file for reference http://download.redis.io/redis-stable/redis.conf
+  redis.conf: |
+    # Set the data directory to the mounted block storage volume.
+    dir /data
+
+    # Reduce the TCP backlog value to match the DigitalOcean node somaxconn value.
+    tcp-backlog 128
+
+    # Enable AOF persistence, see https://redis.io/topics/persistence for more information.
+    appendonly yes
+
+    # Limit the memory Redis uses to match the containers resource request.
+    maxmemory 64mb
+
+    # Configure Redis to evict the least frequently used keys when reaching max memory.
+    maxmemory-policy allkeys-lfu
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pine-redis
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
+    app.kubernetes.io/part-of: pine
+spec:
+  serviceName: pine-redis
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/component: cache
+      app.kubernetes.io/part-of: pine
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis
+        app.kubernetes.io/component: cache
+        app.kubernetes.io/part-of: pine
+    spec:
+      containers:
+        - name: redis
+          image: redis:6
+          command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+          ports:
+            - name: redis
+              containerPort: 6379
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: redis-config
+              mountPath: /usr/local/etc/redis
+          livenessProbe: &healthcheck
+            exec:
+              command: [ "redis-cli", "ping" ]
+          readinessProbe:
+            <<: *healthcheck
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+      volumes:
+        - name: redis-config
+          configMap:
+            name: pine-redis-config
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 512Mi
+        storageClassName: do-block-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pine-redis
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
+    app.kubernetes.io/part-of: pine
+spec:
+  clusterIP: None
+  ports:
+    - name: redis
+      port: 6379
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
+    app.kubernetes.io/part-of: pine
