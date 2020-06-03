@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.0
 
 ENV PORT=80
 
@@ -10,9 +10,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /usr/src/app
 
-RUN mkdir -p tmp/pids
-
 COPY . .
+
+RUN mkdir -p tmp/pids && \
+    bundle update --bundler && \
+    bundle config set path 'vendor/bundle'
 
 EXPOSE 80
 

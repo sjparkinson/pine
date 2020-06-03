@@ -13,7 +13,7 @@ jobs:
 
       - name: github deployment
         id: deployment
-        uses: actions/github-script@0.9.0
+        uses: actions/github-script@v1
         with:
           script: |
             const deployment = await github.repos.createDeployment({
@@ -27,7 +27,7 @@ jobs:
             return deployment.data.id;
 
       - name: github deployment in progress
-        uses: actions/github-script@0.9.0
+        uses: actions/github-script@v1
         with:
           script: |
             github.repos.createDeploymentStatus({
@@ -38,21 +38,19 @@ jobs:
               mediaType: { previews: ['flash', 'ant-man'] }
             })
 
-      - name: Set up Ruby 2.7.1
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
-
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-bundler-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-gems-
+            ${{ runner.os }}-bundler-${{ hashFiles('.tool-versions') }}-
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
 
       - name: bundler configure
         run: |
-          gem install bundler
+          bundle update --bundler
           bundle config --global frozen 1
           bundle config set deployment 'true'
           bundle config set path 'vendor/bundle'
@@ -66,7 +64,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -130,7 +128,7 @@ jobs:
         run: kubectl rollout status deployment/pine --timeout=3m
 
       - name: github deployment success
-        uses: actions/github-script@0.9.0
+        uses: actions/github-script@v1
         if: success()
         with:
           script: |
@@ -145,7 +143,7 @@ jobs:
             })
 
       - name: github deployment failure
-        uses: actions/github-script@0.9.0
+        uses: actions/github-script@v1
         if: cancelled() || failure()
         with:
           script: |
