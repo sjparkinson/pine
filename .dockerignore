@@ -1,57 +1,20 @@
-.git
-.gitignore
-README.md
+/*
 
-#
-# OS X
-#
-.DS_Store
-.AppleDouble
-.LSOverride
-# Icon must end with two \r
-Icon
-# Thumbnails
-._*
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+!/app
+!/bin
+!/db
+!/lib
+!/config
 
-#
-# Rails
-#
-.env
-.env.sample
-*.rbc
-capybara-*.html
-log/
-tmp/
-db/*.sqlite3
-db/*.sqlite3-journal
-public/system
-coverage/
-storage/
-test/
-spec/tmp
-**.orig
+!/public
+/public/packs
 
-.bundle
+!config.ru
 
-.ruby-version
-.ruby-gemset
+!Gemfile
+!Gemfile.lock
+!Rakefile
 
-.rvmrc
-
-# if using bower-rails ignore default bower_components path bower.json files
-vendor/assets/bower_components
-*.bowerrc
-bower.json
-
-node_modules/
-k8s/
-.github/
+!package.json
+!yarn.lock
+!postcss.config.js

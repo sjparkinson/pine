@@ -1,6 +1,7 @@
 FROM ruby:2.7.1
 
-ENV PORT=80
+ENV PORT=80 \
+    RAILS_ENV=production
 
 # Configure Bundler
 RUN bundle config --global frozen 1 && \
@@ -28,8 +29,9 @@ RUN bundle install
 
 COPY . .
 
-RUN bundle exec rake assets:precompile assets:clean
+RUN bundle exec rake assets:precompile assets:clean && \
+    rm -rf tmp log
 
 EXPOSE 80
 
-RUN [ "bundle", "exec", "puma", "-C", "config/puma.rb" ]
+CMD [ "bundle", "exec", "puma", "-C", "config/puma.rb" ]
