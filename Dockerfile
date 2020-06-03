@@ -1,20 +1,34 @@
-FROM ruby:2.7.0
+FROM ruby:2.7.1
 
 ENV PORT=80
 
-# Install dependencies for Yarn, Active Storage and Postgres
-RUN apt-get update && apt-get install -y --no-install-recommends \
+WORKDIR /usr/src/app
+
+# Configure Bundler
+RUN gem install bundler && \
+    bundle config set deployment 'true' && \
+    bundle config set path 'vendor/bundle' && \
+    bundle config set without 'development:test'
+
+# Install dependencies for Node.js, Yarn, Active Storage and Postgres
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get update && apt-get install -y --no-install-recommends \
+    nodejs \
     imagemagick \
     postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && \
+    npm install -g yarn && \
+    mkdir -p tmp/pids
 
-WORKDIR /usr/src/app
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle install
 
 COPY . .
 
-RUN mkdir -p tmp/pids && \
-    bundle update --bundler && \
-    bundle config set path 'vendor/bundle'
+RUN SECRET_KEY_BASE=disabled RAILS_ENV=production \
+    bundle exec rails assets:precompile && \
+    rm -rf node_modules
 
 EXPOSE 80
 
