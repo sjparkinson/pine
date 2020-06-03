@@ -47,12 +47,12 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
-          livenessProbe: &healthcheck
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-          readinessProbe:
-            <<: *healthcheck
+          # livenessProbe: &healthcheck
+          #   httpGet:
+          #     path: /
+          #     port: 80
+          #   initialDelaySeconds: 10
+          # readinessProbe:
+          #   <<: *healthcheck
       imagePullSecrets:
         - name: github
