@@ -35,7 +35,9 @@ spec:
         - name: pine
           image: docker.pkg.github.com/sjparkinson/pine/pine:latest
           envFrom:
-            secretRef: pine
+            - secretRef:
+                name: pine
+                optional: false
           env:
             - name: PAILS_ENV
               value: production
