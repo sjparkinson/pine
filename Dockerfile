@@ -1,7 +1,9 @@
 FROM ruby:2.7.1
 
-ENV PORT=80 \
-    RAILS_ENV=production
+ENV PORT=80
+
+# Install Bundler
+RUN gem install bundler
 
 # Configure Bundler
 RUN bundle config --global frozen 1 && \
@@ -29,7 +31,8 @@ RUN bundle install
 
 COPY . .
 
-RUN bundle exec rails assets:precompile assets:clean && \
+RUN SECRET_KEY_BASE=disabled RAILS_ENV=production \
+    bundle exec rails assets:precompile assets:clean && \
     rm -rf tmp
 
 EXPOSE 80
