@@ -33,7 +33,7 @@ COPY . .
 
 RUN SECRET_KEY_BASE=disabled RAILS_ENV=production \
     bundle exec rails assets:precompile && \
-    rm -rf tmp
+    rm -rf tmp/cache
 
 EXPOSE 80
 
