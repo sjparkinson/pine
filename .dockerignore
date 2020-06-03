@@ -4,12 +4,11 @@
 !/bin
 !/db
 !/lib
+!/vendor
+!/public
 
 !/config
 /config/master.key
-
-!/public
-/public/packs
 
 !config.ru
 
