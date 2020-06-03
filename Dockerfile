@@ -29,8 +29,8 @@ RUN bundle install
 
 COPY . .
 
-RUN bundle exec rake assets:precompile assets:clean && \
-    rm -rf tmp log
+RUN bundle exec rails assets:precompile assets:clean && \
+    rm -rf tmp
 
 EXPOSE 80
 

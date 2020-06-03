@@ -4,7 +4,9 @@
 !/bin
 !/db
 !/lib
+
 !/config
+/config/master.key
 
 !/public
 /public/packs
