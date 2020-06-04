@@ -41,6 +41,8 @@ spec:
           env:
             - name: PAILS_ENV
               value: production
+            - name: RACK_ENV
+              value: production
           ports:
             - containerPort: 80
           resources:
