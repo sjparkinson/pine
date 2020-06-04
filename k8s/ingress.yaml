@@ -4,7 +4,12 @@ metadata:
   name: pine-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
+  tls:
+    - hosts:
+        - pine.uncomplicated.systems
+      secretName: pine-tls
   rules:
     - host: pine.uncomplicated.systems
       http:
