@@ -41,6 +41,7 @@ spec:
       app.kubernetes.io/component: cache
       app.kubernetes.io/part-of: pine
   replicas: 1
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
