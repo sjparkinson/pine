@@ -5,5 +5,6 @@
 <%= bootstrap_form_tag url: login_path, local: true do |form| %>
     <%= form.email_field :email, label: "Email address" %>
     <%= form.password_field :password %>
+    <%= text_field_tag :username, nil, class: "d-none" %>
     <%= form.submit "Login" %>
 <% end %>

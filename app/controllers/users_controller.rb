@@ -6,9 +6,13 @@ class UsersController < ApplicationController
   end
 
   def create
+    # Check there is no value in the visually hidden honeypot form field `password_confirm`.
+    return head :bad_request unless params[:password_confirm].empty?
+
     @user = User.new(user_params)
 
     if @user.save
+      reset_session
       session[:user_id] = @user.id
       redirect_to root_path
     else
