@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get 'signup', to: 'users#new', as: 'signup'
+  get 'join', to: 'users#new', as: 'join'
 
   resources :sessions, only: %i[new create destroy]
   resources :users, only: %i[new create]

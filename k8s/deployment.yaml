@@ -50,9 +50,12 @@ spec:
               cpu: 10m
               memory: 128Mi
           livenessProbe: &healthcheck
-            tcpSocket:
+            httpGet:
+              path: /
               port: 80
-            initialDelaySeconds: 30
+              httpHeaders:
+                - name: Host
+                  value: pine.uncomplicated.systems
           readinessProbe:
             <<: *healthcheck
       imagePullSecrets:
