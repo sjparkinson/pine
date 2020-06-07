@@ -83,6 +83,8 @@ group :development do
   # Code linting and formatting
   gem 'rcodetools', '~> 0.8.5', require: false
   gem 'rubocop', '~> 0.83.0', require: false
+
+  gem "dotenv-rails", "~> 2.7"
 end
 
 group :test do

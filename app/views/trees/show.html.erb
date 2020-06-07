@@ -6,6 +6,11 @@
 
 <div class="mb-3"><%= sanitize @tree.content %></div>
 
+<% if @tree.fact.present? -%>
+<h3>Did you know?</h3>
+<p><%= @tree.fact %></p>
+<%- end %>
+
 <% if @tree.openstreetmap_node.present? -%>
 <p><a href="<%= "https://www.openstreetmap.org/node/#{@tree.openstreetmap_node}" %>">View this tree's location on OpenStreetMap</a>.</p>
 <%- end %>

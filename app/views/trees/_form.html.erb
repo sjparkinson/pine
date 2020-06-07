@@ -7,6 +7,8 @@
     <trix-editor input="tree_content" class="trix-content form-control"></trix-editor>
 </div>
 
+<%= form.text_field :fact, label: "Interesting fact", prepend: "Did you know...", help: "This will appear on the home page as a \"did you know\" fact." %>
+
 <%= form.file_field :images, multiple: true, accept: "image/png,image/gif,image/jpeg" %>
 
 <% if @tree.images.attached? %>

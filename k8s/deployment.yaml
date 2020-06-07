@@ -49,6 +49,8 @@ spec:
             requests:
               cpu: 10m
               memory: 128Mi
+            limits:
+              memory: 256Mi
           livenessProbe: &healthcheck
             httpGet:
               path: /
@@ -56,6 +58,7 @@ spec:
               httpHeaders:
                 - name: Host
                   value: pine.uncomplicated.systems
+            initialDelaySeconds: 30
           readinessProbe:
             <<: *healthcheck
       imagePullSecrets:
