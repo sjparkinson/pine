@@ -3,5 +3,7 @@ class IndexController < ApplicationController
 
   def index
     @tree_count = Tree.all.size
+
+    @featured_tree = Tree.offset(rand(@tree_count)).first
   end
 end
