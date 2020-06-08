@@ -23,12 +23,12 @@
     <div class="col mb-4">
         <div class="card">
             <%= link_to(image_tag(image.variant(apply: { thumbnail: '320x300^', gravity: 'center', extent: '320x300' }), class: "card-img-top"), rails_blob_path(image))%>
+
+            <% if @tree.user == current_user -%>
             <div class="card-body">
-                <p class="card-text"><%= image.filename %></p>
-                <% if @tree.user == current_user -%>
-                <%= link_to 'Remove', tree_attachment_path(@tree, image.id), method: :delete, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to remove this image?" } %>
-                <%- end %>
+                <p class="card-text"><%= link_to 'Remove', tree_attachment_path(@tree, image.id), method: :delete, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to remove this image?" } %></p>
             </div>
+            <%- end %>
         </div>
     </div>
 <% end %>
