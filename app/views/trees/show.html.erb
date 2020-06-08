@@ -4,7 +4,7 @@
 <p><i><%= @tree.scientific_name %></i></p>
 <%- end %>
 
-<div class="mb-3"><%= sanitize @tree.content %></div>
+<div class="mb-3 tree-content"><%= sanitize @tree.content %></div>
 
 <% if @tree.fact.present? -%>
 <h3>Did you know?</h3>
