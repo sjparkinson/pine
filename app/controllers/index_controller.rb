@@ -4,6 +4,6 @@ class IndexController < ApplicationController
   def index
     @tree_count = Tree.all.size
 
-    @featured_tree = Tree.offset(rand(@tree_count)).first
+    @fact = Tree.select(:fact).where.not(fact: nil).order(Arel.sql('RANDOM()')).first.fact
   end
 end
