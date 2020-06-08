@@ -24,7 +24,7 @@
         <div class="card">
             <%= link_to(image_tag(image.variant(apply: { thumbnail: '320x300^', gravity: 'center', extent: '320x300' }), class: "card-img-top"), rails_blob_path(image))%>
 
-            <% if @tree.user == current_user -%>
+            <% if @tree.can_edit? current_user -%>
             <div class="card-body">
                 <p class="card-text"><%= link_to 'Remove', tree_attachment_path(@tree, image.id), method: :delete, class: "btn btn-sm btn-outline-danger", data: { confirm: "Are you sure you want to remove this image?" } %></p>
             </div>
@@ -37,7 +37,7 @@
 
 <p><i>Added by <%= @tree.user.display_name %>. Last updated <%= time_ago_in_words @tree.updated_at %> ago.</i></p>
 
-<% if @tree.user == current_user -%>
+<% if @tree.can_edit? current_user -%>
 <%= link_to 'Edit', edit_tree_path(@tree), class: 'btn btn-secondary mr-2' %>
 <%= link_to "Remove", tree_path(@tree), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to remove this?" } %>
 <%- end %>

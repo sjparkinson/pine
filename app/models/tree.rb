@@ -12,4 +12,8 @@ class Tree < ApplicationRecord
   has_many_attached :images
 
   belongs_to :user
+
+  def can_edit?(user)
+    return self.user == user
+  end
 end

@@ -66,7 +66,7 @@ class TreesController < ApplicationController
 
   # Only the owner can edit and remove their tree.
   def can_edit
-    redirect_to @tree unless current_user == @tree.user
+    redirect_to @tree unless @tree.can_edit? current_user
   end
 
   # Only allow a list of trusted parameters through.
