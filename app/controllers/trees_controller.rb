@@ -5,7 +5,7 @@ class TreesController < ApplicationController
   before_action :can_edit, only: %i[edit destroy destroy_attachment]
 
   def index
-    @trees = Tree.all.order(updated_at: :desc)
+    @trees = Tree.includes(:user).all.order(updated_at: :desc)
 
     fresh_when last_modified: @trees.maximum(:updated_at).utc, etag: @trees unless @trees.empty?
   end
