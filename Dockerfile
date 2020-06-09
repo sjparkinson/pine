@@ -14,7 +14,7 @@ RUN gem install bundler && \
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get update && apt-get install -y --no-install-recommends \
     nodejs \
-    imagemagick \
+    libvips \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/* && \
     npm install -g yarn && \

@@ -40,17 +40,18 @@ gem "auto_strip_attributes", '~> 2.6'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 
-# Use for compression and internationalisation Rack middleware
+# Used for compression and internationalisation Rack middleware
 gem 'rack-contrib', '~> 2.2.0'
 
 # Use aws-sdk-s3 to connect to DigitalOcean Spaces for Active Storage
 gem 'aws-sdk-s3', '~> 1.66.0', require: false
 
-# Use to validate Active Storage uploads
+# Used to validate Active Storage uploads
 gem "active_storage_validations", '~> 0.8.9'
 
-# Use to transform Active Storage image variants
+# Used to transform Active Storage image variants
 gem "image_processing", '~> 1.11'
+gem "ruby-vips", "~> 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4.6', require: false
