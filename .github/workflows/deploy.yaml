@@ -80,6 +80,9 @@ jobs:
                 containers:
                   - name: pine
                     image: docker.pkg.github.com/${{ github.repository }}/pine:${{ github.sha }}
+                    env:
+                      - name: RAILS_APP_VERSION
+                        value: ${{ github.sha }}
           EOF
 
       - name: kubectl apply
