@@ -11,10 +11,6 @@
 <p><%= @tree.fact %></p>
 <%- end %>
 
-<% if @tree.openstreetmap_node.present? -%>
-<p><a href="<%= "https://www.openstreetmap.org/node/#{@tree.openstreetmap_node}" %>">View this tree's location on OpenStreetMap</a>.</p>
-<%- end %>
-
 <% if @tree.images.attached? -%>
 <h3>Pictures</h3>
 

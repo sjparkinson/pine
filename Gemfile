@@ -57,9 +57,6 @@ gem "ruby-vips", "~> 2.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4.6', require: false
 
-# Use to query OpenStreetMap
-# gem 'rosemary', '~> 0.4.4'
-
 ### Pinned dependencies
 
 # Downgrade sprockets to v3 while sourcemaps are broken in Firefox (https://github.com/rails/sprockets/issues/649)
