@@ -58,6 +58,8 @@ spec:
               httpHeaders:
                 - name: Host
                   value: pine.uncomplicated.systems
+                - name: X-Forwarded-Proto
+                  value: https
             initialDelaySeconds: 30
           readinessProbe:
             <<: *healthcheck
