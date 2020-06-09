@@ -18,6 +18,7 @@ gem 'pg', '~> 1.2.3'
 
 # Use Redis to cache database queries
 gem 'redis', '~> 4.1.4'
+gem 'hiredis', '~> 0.6.3'
 
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.13'
