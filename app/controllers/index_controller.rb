@@ -4,7 +4,7 @@ class IndexController < ApplicationController
   def index
     @tree_count = Tree.all.size
 
-    @fact = Tree.select(:fact).where.not(fact: nil).order(Arel.sql('RANDOM()')).first.fact
+    @fact = Tree.select(:fact).where.not(fact: nil).order(Arel.sql('RANDOM()')).first&.fact
   end
 
   def healthz

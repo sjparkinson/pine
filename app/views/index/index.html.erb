@@ -1,4 +1,4 @@
-<h2>Welcome to Pine</h2>
+<h1>Welcome to Pine</h1>
 
 <p>Pine is a place to store trees of note. Mainly it's for Aoife.</p>
 
@@ -8,6 +8,8 @@
 
 <p><i>n.</i> A perennial woody plant having a main trunk and usually a distinct crown.</p>
 
+<% if @fact.present? -%>
 <h4>Did you know?</h4>
 
 <p><%= @fact %></p>
+<%- end %>

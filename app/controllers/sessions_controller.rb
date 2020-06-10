@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     # Check there is no value in the visually hidden honeypot form field `username`.
-    return head :bad_request unless params[:username].empty?
+    return head :bad_request unless params[:username].blank?
 
     @user = User.find_by(email: params[:email])
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_back fallback_location: root_path, allow_other_host: false
     else
-      render :new
+      redirect_to login_path, alert: "Invalid credentials."
     end
   end
 

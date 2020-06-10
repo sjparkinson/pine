@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   get 'join', to: 'users#new', as: 'join'
 
-  resources :sessions, only: %i[new create destroy]
   resources :users, only: %i[new create]
   resources :trees
 

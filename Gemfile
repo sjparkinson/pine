@@ -53,6 +53,9 @@ gem "ruby-vips", "~> 2.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4.6', require: false
 
+# Use lograge to format production logs
+gem "lograge", "~> 0.11.2"
+
 ### Pinned dependencies
 
 # Downgrade sprockets to v3 while sourcemaps are broken in Firefox (https://github.com/rails/sprockets/issues/649)
@@ -64,6 +67,8 @@ gem 'concurrent-ruby', '1.1.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem "dotenv-rails", "~> 2.7"
 end
 
 group :development do
@@ -78,11 +83,12 @@ group :development do
   # Code linting and formatting
   gem 'rcodetools', '~> 0.8.5', require: false
   gem 'rubocop', '~> 0.83.0', require: false
-
-  gem "dotenv-rails", "~> 2.7"
 end
 
 group :test do
+  # Use SQLite as the database adapter for tests.
+  gem "sqlite3", "~> 1.4"
+
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.32.2'
   gem 'selenium-webdriver', '~> 3.142.7'
@@ -90,5 +96,3 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.3.0'
 end
-
-gem "lograge", "~> 0.11.2"

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     # Check there is no value in the visually hidden honeypot form field `password_confirm`.
-    return head :bad_request unless params[:password_confirm].empty?
+    return head :bad_request unless params[:password_confirm].blank?
 
     @user = User.new(user_params)
 

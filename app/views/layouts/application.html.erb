@@ -33,7 +33,7 @@
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item <% if current_page?(controller: 'trees') %>active<% end %>">
+                <li class="nav-item <%= "active" if current_page?({ controller: 'trees' }) %>">
                     <%= link_to "Trees", trees_path, class: "nav-link" %>
                 </li>
             </ul>

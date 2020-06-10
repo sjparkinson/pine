@@ -2,7 +2,9 @@ require 'test_helper'
 
 class TreesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @tree = trees(:one)
+    @tree = trees(:walnut)
+    @user = users(:john)
+    login_as @user
   end
 
   test "should get index" do
@@ -17,7 +19,7 @@ class TreesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tree" do
     assert_difference('Tree.count') do
-      post trees_url, params: { tree: {  } }
+      post trees_url, params: { tree: { common_name: "Scotts Pine" } }
     end
 
     assert_redirected_to tree_url(Tree.last)
@@ -34,7 +36,7 @@ class TreesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tree" do
-    patch tree_url(@tree), params: { tree: {  } }
+    patch tree_url(@tree), params: { tree: { common_name: "Black Walnut" } }
     assert_redirected_to tree_url(@tree)
   end
 

@@ -1,48 +1,28 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = users(:one)
-  end
-
-  test "should get index" do
-    get users_url
+  test 'should get join' do
+    get join_url
     assert_response :success
   end
 
-  test "should get new" do
-    get new_user_url
-    assert_response :success
-  end
-
-  test "should create user" do
+  test 'should create user' do
     assert_difference('User.count') do
-      post users_url, params: { user: { email: @user.email, password: 'secret', password_confirmation: 'secret' } }
+      post users_url, params: { user: { email: 'hjkl@example.com', display_name: 'Jane', password: default_password } }
     end
 
-    assert_redirected_to user_url(User.last)
+    assert_equal User.last.id, session[:user_id]
+    assert_redirected_to root_path
   end
 
-  test "should show user" do
-    get user_url(@user)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_user_url(@user)
-    assert_response :success
-  end
-
-  test "should update user" do
-    patch user_url(@user), params: { user: { email: @user.email, password: 'secret', password_confirmation: 'secret' } }
-    assert_redirected_to user_url(@user)
-  end
-
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
-      delete user_url(@user)
+  test 'should require all fields' do
+    assert_difference('User.count') do
+      post users_url, params: { user: { email: 'hjkl@example.com', display_name: 'Jane', password: default_password } }
     end
 
-    assert_redirected_to users_url
+    assert_equal User.last.id, session[:user_id]
+    assert_redirected_to root_path
   end
 end
