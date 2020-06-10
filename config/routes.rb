@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
   delete '/trees/:id/image/:image_id', to: 'trees#destroy_attachment', as: 'tree_attachment'
 
-  get 'index/index'
+  # Handle error pages.
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "index#error", :code => code
+  end
 end

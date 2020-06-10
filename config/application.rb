@@ -38,5 +38,7 @@ module Pine
     config.middleware.insert_before(Rack::ETag, Rack::Locale)
 
     config.i18n.available_locales = [:en, 'en-GB', 'en-US']
+
+    config.exceptions_app = self.routes
   end
 end
