@@ -50,11 +50,15 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  # Use a different cache store in production.
-  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+  # Use lograge to format logs.
+  config.lograge.enabled = true
+  config.lograge.ignore_actions = ['IndexController#healthz']
 
-  # Use Redis to store the cache
-  config.session_store :cache_store, key: '_session_id', expire_after: 1.month
+  # Use the memory store for fragment caching.
+  config.cache_store = :memory_store
+
+  # Use cookies to store session information.
+  config.session_store :cookie_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque

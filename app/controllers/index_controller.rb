@@ -6,4 +6,8 @@ class IndexController < ApplicationController
 
     @fact = Tree.select(:fact).where.not(fact: nil).order(Arel.sql('RANDOM()')).first.fact
   end
+
+  def healthz
+    head :ok
+  end
 end

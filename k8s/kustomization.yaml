@@ -5,7 +5,6 @@ resources:
   - ingress.yaml
   - pod-disruption-budget.yaml
   - postgres.yaml
-  - redis.yaml
   - service.yaml
 commonLabels:
   app.kubernetes.io/part-of: pine

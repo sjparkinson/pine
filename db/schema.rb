@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_205009) do
+ActiveRecord::Schema.define(version: 2020_06_09_204326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2020_06_07_205009) do
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "openstreetmap_node"
     t.string "fact"
     t.index ["user_id"], name: "index_trees_on_user_id"
   end

@@ -71,6 +71,6 @@ class TreesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def tree_params
-    params.require(:tree).permit(:common_name, :scientific_name, :content, :fact, :openstreetmap_node, images: [])
+    params.require(:tree).permit(:common_name, :scientific_name, :content, :fact, images: [])
   end
 end
