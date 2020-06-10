@@ -86,9 +86,6 @@ group :development do
 end
 
 group :test do
-  # Use SQLite as the database adapter for tests.
-  gem "sqlite3", "~> 1.4"
-
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.32.2'
   gem 'selenium-webdriver', '~> 3.142.7'

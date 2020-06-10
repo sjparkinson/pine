@@ -1,13 +1,80 @@
 name: Deploy
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: pine_test
+          POSTGRES_PASSWORD: hunter2
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:hunter2@localhost:5432/pine_test
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install dependencies
+        run: sudo apt-get install libvips
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Run bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Run rails assets:precompile
+        run: bundle exec rails assets:precompile
+
+      - name: Run rails db:migrate
+        run: bundle exec rails db:migrate
+
+      - name: Run rails test
+        run: bundle exec rails test test/controllers/
+
   deploy:
     runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/master'
+
+    needs: test
+
     steps:
       - uses: actions/checkout@v2
 
