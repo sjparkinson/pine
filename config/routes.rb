@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'join', to: 'users#new', as: 'join'
+  post 'join', to: 'users#create'
 
-  resources :users, only: %i[new create]
   resources :trees
 
   delete '/trees/:id/image/:image_id', to: 'trees#destroy_attachment', as: 'tree_attachment'

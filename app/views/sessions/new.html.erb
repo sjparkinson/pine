@@ -2,7 +2,7 @@
 
 <p>Login to your Pine account.</p>
 
-<%= bootstrap_form_tag url: login_path, local: true do |form| %>
+<%= bootstrap_form_tag url: login_path do |form| %>
     <%= form.email_field :email, label: "Email address" %>
     <%= form.password_field :password %>
     <%= text_field_tag :username, nil, class: "d-none" %>

@@ -3,6 +3,11 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+  test "routes" do
+    assert_routing '/login', controller: 'sessions', action: 'new'
+    assert_routing({ method: 'delete', path: '/logout' }, { controller: 'sessions', action: 'destroy' })
+  end
+
   test 'get the login form' do
     get login_path
 

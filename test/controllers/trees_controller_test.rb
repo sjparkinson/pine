@@ -1,6 +1,16 @@
 require 'test_helper'
 
 class TreesControllerTest < ActionDispatch::IntegrationTest
+  test "routes" do
+    assert_routing '/trees', controller: 'trees', action: 'index'
+    assert_routing '/trees/00000000-0000-0000-0000-000000000000', controller: 'trees', action: 'show', id: '00000000-0000-0000-0000-000000000000'
+    assert_routing '/trees/00000000-0000-0000-0000-000000000000/edit', controller: 'trees', action: 'edit', id: '00000000-0000-0000-0000-000000000000'
+    assert_routing '/trees/new', controller: 'trees', action: 'new'
+    assert_routing({ method: 'post', path: '/trees' }, { controller: 'trees', action: 'create' })
+    assert_routing({ method: 'patch', path: '/trees/00000000-0000-0000-0000-000000000000' }, { controller: 'trees', action: 'update', id: '00000000-0000-0000-0000-000000000000' })
+    assert_routing({ method: 'delete', path: '/logout' }, { controller: 'sessions', action: 'destroy' })
+  end
+
   setup do
     @tree = trees(:walnut)
     @user = users(:john)

@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class IndexControllerTest < ActionDispatch::IntegrationTest
+  test "routes" do
+    assert_routing '/', controller: 'index', action: 'index'
+    assert_routing '/healthz', controller: 'index', action: 'healthz'
+  end
+
   test "index#index" do
     get root_path
     assert_response :success
