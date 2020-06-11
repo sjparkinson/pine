@@ -13,6 +13,6 @@ class IndexController < ApplicationController
   end
 
   def healthz
-    head :ok
+    render plain: "OK"
   end
 end

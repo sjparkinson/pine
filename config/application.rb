@@ -30,15 +30,5 @@ module Pine
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
-    # Use Rack::Deflater to compress responses with gzip.
-    config.middleware.insert_before(Rack::Sendfile, Rack::Deflater)
-
-    # Use Rack::Locale to set locale based on the Accept-Language request header.
-    config.middleware.insert_before(Rack::ETag, Rack::Locale)
-
-    config.i18n.available_locales = [:en, 'en-GB', 'en-US']
-
-    config.exceptions_app = self.routes
   end
 end
