@@ -4,3 +4,5 @@
 Rails.application.config.middleware.insert_before(Rack::ETag, Rack::Locale)
 
 Rails.application.config.i18n.available_locales = [:en, 'en-GB', 'en-US']
+
+Rails.application.config.i18n.default_locale = :en

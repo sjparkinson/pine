@@ -1,47 +1,18 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-  setup do
-    @user = users(:one)
-  end
+  # test "join" do
+  #   visit root_url
+  #   click_link "Join"
 
-  test "visiting the index" do
-    visit users_url
-    assert_selector "h1", text: "Users"
-  end
+  #   assert_current_path "/join"
 
-  test "creating a User" do
-    visit users_url
-    click_on "New User"
+  #   fill_in t('en.activerecord.attributes.user.email'), with: "lkjh@example.com"
+  #   fill_in "Display name", with: 'Jane Doe'
+  #   fill_in "Password", with: default_password
+  #   click_button "Join"
 
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: 'secret'
-    fill_in "Password confirmation", with: 'secret'
-    click_on "Create User"
-
-    assert_text "User was successfully created"
-    click_on "Back"
-  end
-
-  test "updating a User" do
-    visit users_url
-    click_on "Edit", match: :first
-
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: 'secret'
-    fill_in "Password confirmation", with: 'secret'
-    click_on "Update User"
-
-    assert_text "User was successfully updated"
-    click_on "Back"
-  end
-
-  test "destroying a User" do
-    visit users_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
-
-    assert_text "User was successfully destroyed"
-  end
+  #   assert_current_path "/"
+  #   assert_text "Welcome to Pine!"
+  # end
 end

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to root_path, notice: "Welcome to Pine!"
     else
       render :new
     end
