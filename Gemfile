@@ -10,9 +10,6 @@ gem 'puma', '~> 4.3.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
 
-# Support location based formatting using the Accept-Language request header
-gem 'rails-i18n', '~> 6.0.0'
-
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.3'
 

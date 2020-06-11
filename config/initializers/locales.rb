@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-# Use Rack::Locale to set locale based on the Accept-Language request header.
-Rails.application.config.middleware.insert_before(Rack::ETag, Rack::Locale)
+I18n.load_path += Dir[Rails.root.join('locales', '*.yml')]
 
-Rails.application.config.i18n.available_locales = [:en, 'en-GB', 'en-US']
+I18n.available_locales = [:en]
 
-Rails.application.config.i18n.default_locale = :en
+I18n.default_locale = :en
