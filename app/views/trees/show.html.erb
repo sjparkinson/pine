@@ -18,7 +18,7 @@
 <% @tree.images.each do |image| %>
     <div class="col mb-4">
         <div class="card">
-            <%= link_to(image_tag(image.variant(apply: { thumbnail: '320x300^', gravity: 'center', extent: '320x300' }), class: "card-img-top"), image.variant(resize_to_limit: [1024, 1024]))%>
+            <%= link_to(image_tag(image.variant(resize_to_fill: [320, 300]), class: "card-img-top"), image.variant(resize_to_limit: [1024, 1024]))%>
 
             <% if @tree.can_edit? current_user -%>
             <div class="card-body">

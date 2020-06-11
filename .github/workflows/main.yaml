@@ -158,9 +158,6 @@ jobs:
       - name: kubectl rollout status
         run: kubectl rollout status deployment/pine --timeout=3m
 
-      - name: rails db:migrate
-        run: kubectl exec deployment/pine --pod-running-timeout=3m -- bundle exec rails db:migrate
-
       - name: github deployment success
         uses: actions/github-script@v1
         if: success()
