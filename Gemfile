@@ -55,9 +55,6 @@ gem "lograge", "~> 0.11.2"
 
 ### Pinned dependencies
 
-# Downgrade sprockets to v3 while sourcemaps are broken in Firefox (https://github.com/rails/sprockets/issues/649)
-gem 'sprockets', '~> 3.7.2'
-
 # Downgrade concurrent-ruby while it creates a thread on require (https://github.com/ruby-concurrency/concurrent-ruby/issues/868)
 gem 'concurrent-ruby', '1.1.5'
 
@@ -91,3 +88,5 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.3.0'
 end
+
+gem "sprockets-exporters_pack", "~> 0.1.2"

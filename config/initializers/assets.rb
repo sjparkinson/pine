@@ -12,6 +12,10 @@ Rails.application.config.public_file_server.headers = {
   'Cache-Control' => "max-age=31536000"
 }
 
+Rails.application.config.assets.configure do |env|
+  env.register_exporter %w(text/css application/javascript image/svg+xml), Sprockets::ExportersPack::BrotliExporter
+end
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
