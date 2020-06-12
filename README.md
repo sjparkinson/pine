@@ -1,18 +1,11 @@
 # README
 
-## Todo
-
-- [ ] i18n
-- [ ] GitHub Action workflow
-- [ ] Kubernetes deployment
-
 ## Environment variables
 
 ```
 DATABASE_URL=
 DO_SPACES_KEY=
 DO_SPACES_SECRET=
-RAILS_ENV=production
 ```
 
 ## Secrets
