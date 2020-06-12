@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_back fallback_location: root_path, allow_other_host: false
     else
-      redirect_to login_path, alert: "Invalid credentials."
+      redirect_to login_path, alert: "Sorry, those were invalid credentials. Please try again."
     end
   end
 

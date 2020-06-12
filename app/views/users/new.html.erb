@@ -2,7 +2,7 @@
 
 <p>Create a new Pine account.</p>
 
-<%= bootstrap_form_with url: join_path do |form| %>
+<%= bootstrap_form_with model: @user, url: join_path do |form| %>
     <%= form.email_field :email %>
     <%= form.text_field :display_name %>
     <%= form.password_field :password, help: "Must be at least 6 characters long" %>

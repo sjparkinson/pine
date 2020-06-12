@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "routes" do
+  test 'routes' do
     assert_routing '/join', controller: 'users', action: 'new'
     assert_routing({ method: 'post', path: '/join' }, { controller: 'users', action: 'create' })
   end
@@ -29,5 +29,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal User.last.id, session[:user_id]
     assert_redirected_to root_path
+  end
+
+  test 'should block with honeypot filled in' do
+    post join_url, params: {
+      user: {
+        email: 'lkjh@example.com',
+        display_name: 'Jane',
+        password: default_password,
+        password_confirm: default_password
+      }
+    }
+
+    assert_response :bad_request
   end
 end
