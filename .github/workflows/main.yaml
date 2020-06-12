@@ -63,8 +63,14 @@ jobs:
       - name: Run rails db:migrate
         run: bundle exec rails db:migrate
 
-      - name: Run rails test
-        run: bundle exec rails test
+      - name: Run rails test test/controllers/*
+        run: bundle exec rails test test/controllers/*
+
+      - name: Run rails test test/models/*
+        run: bundle exec rails test test/models/*
+
+      - name: Run rails test test/system/*
+        run: bundle exec rails test test/system/*
 
   deploy:
     runs-on: ubuntu-latest

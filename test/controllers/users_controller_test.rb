@@ -36,9 +36,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       user: {
         email: 'lkjh@example.com',
         display_name: 'Jane',
-        password: default_password,
-        password_confirm: default_password
-      }
+        password: default_password
+      },
+      password_confirm: default_password
     }
 
     assert_response :bad_request
