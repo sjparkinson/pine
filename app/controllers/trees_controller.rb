@@ -27,7 +27,7 @@ class TreesController < ApplicationController
     @tree.user = current_user
 
     if @tree.save
-      redirect_to @tree, notice: "#{@tree.common_name} was successfully added."
+      redirect_to @tree, notice: t('.success', tree: @tree.common_name)
     else
       render :new
     end
@@ -35,7 +35,7 @@ class TreesController < ApplicationController
 
   def update
     if @tree.update(tree_params)
-      redirect_to @tree, notice: "#{@tree.common_name} was successfully updated."
+      redirect_to @tree, notice: t('.success', tree: @tree.common_name)
     else
       render :edit
     end
@@ -43,9 +43,9 @@ class TreesController < ApplicationController
 
   def destroy
     if @tree.destroy
-      redirect_to trees_url, notice: "#{@tree.common_name} was successfully removed."
+      redirect_to trees_url, notice: t('.success', tree: @tree.common_name)
     else
-      redirect_to trees_url, alert: "#{@tree.common_name} couldn't be removed."
+      redirect_to trees_url, alert: t('.failure', tree: @tree.common_name)
     end
   end
 
@@ -54,7 +54,7 @@ class TreesController < ApplicationController
 
     @attachment.purge_later
 
-    redirect_to @tree, notice: "#{@attachment.filename} was successfully removed."
+    redirect_to @tree, notice: t('.success')
   end
 
   private

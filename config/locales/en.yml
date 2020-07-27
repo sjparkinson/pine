@@ -31,6 +31,21 @@
 
 en:
 
+  trees:
+    create:
+      success: "%{tree} was added."
+    update:
+      success: "%{tree} was updated."
+    destroy:
+      success: "%{tree} was removed."
+      failure: "%{tree} could not be removed."
+    destroy_attachment:
+      success: "The image was removed."
+
+  users:
+    create:
+      welcome: Welcome to Pine!
+
   activerecord:
     attributes:
       user:

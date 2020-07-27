@@ -10,10 +10,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    login = params.require(:user).permit(:email, :password)
-
     # Check there is no value in the visually hidden honeypot form field `username`.
     return head :bad_request unless params[:username].blank?
+
+    login = params.require(:user).permit(:email, :password)
 
     @user = User.find_by(email: login[:email])
 
