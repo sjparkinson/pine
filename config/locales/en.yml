@@ -40,11 +40,13 @@ en:
       success: "%{tree} was removed."
       failure: "%{tree} could not be removed."
     destroy_attachment:
-      success: "The image was removed."
+      success: The image was removed.
 
   users:
     create:
       welcome: Welcome to Pine!
+    update:
+      success: Your account details were updated.
 
   activerecord:
     attributes:

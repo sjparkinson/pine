@@ -2,7 +2,7 @@
 
 class TreesController < ApplicationController
   before_action :set_tree, only: %i[show edit update destroy destroy_attachment]
-  before_action :can_edit, only: %i[edit destroy destroy_attachment]
+  before_action :can_edit, only: %i[edit update destroy destroy_attachment]
 
   def index
     @trees = Tree.includes(:user).all.order(updated_at: :desc)

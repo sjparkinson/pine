@@ -39,7 +39,7 @@
             </ul>
 
             <% if logged_in? %>
-            <span class="navbar-text mr-3"><%= current_user.display_name %></span>
+            <%= link_to current_user.display_name, account_path, class: "navbar-text mr-3" %>
             <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-outline-light my-2 my-sm-0" %>
             <% else %>
             <span class="navbar-text">

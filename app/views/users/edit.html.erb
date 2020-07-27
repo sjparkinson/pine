@@ -1,0 +1,10 @@
+<h1>Update your account</h1>
+
+<%= bootstrap_form_with model: @user, url: account_path do |form| %>
+    <%= form.email_field :email %>
+    <%= form.text_field :display_name %>
+    <%= form.password_field :password %>
+    <%= form.form_group do %>
+        <%= form.submit "Update" %>
+    <% end %>
+<% end %>

@@ -7,5 +7,7 @@
     <%= form.text_field :display_name %>
     <%= form.password_field :password %>
     <%= text_field_tag :password_confirm, nil, class: "d-none" %>
-    <%= form.submit "Join" %>
+    <%= form.form_group do %>
+        <%= form.submit "Join" %>
+    <% end %>
 <% end %>

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'join', to: 'users#new', as: 'join'
   post 'join', to: 'users#create'
 
+  get 'account', to: 'users#edit', as: 'account'
+  patch 'account', to: 'users#update'
+
   resources :trees
 
   delete '/trees/:id/image/:image_id', to: 'trees#destroy_attachment', as: 'tree_attachment'
