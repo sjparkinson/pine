@@ -4,7 +4,7 @@ require 'rails/test_help'
 
 module AuthenticationHelper
   def login_as(user)
-    post login_url, params: { email: user.email, password: default_password }
+    post login_url, params: { user: { email: user.email, password: default_password } }
   end
 
   def default_password_digest

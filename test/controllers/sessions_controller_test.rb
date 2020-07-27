@@ -25,8 +25,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'logging in' do
     user = users(:john)
     post login_url, params: {
-      email: user.email,
-      password: default_password
+      user: {
+        email: user.email,
+        password: default_password
+      }
     }
 
     assert_redirected_to root_path
@@ -36,9 +38,11 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'logging in with honeypot filled in' do
     user = users(:john)
     post login_url, params: {
-      email: user.email,
-      password: default_password,
       username: 'john',
+      user: {
+        email: user.email,
+        password: default_password,
+      }
     }
 
     assert_response :bad_request
