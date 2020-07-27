@@ -5,15 +5,19 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect_to root_path
     end
+
+    @user = User.new
   end
 
   def create
+    login = params.require(:user).permit(:email, :password)
+
     # Check there is no value in the visually hidden honeypot form field `username`.
     return head :bad_request unless params[:username].blank?
 
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(email: login[:email])
 
-    if @user && @user.authenticate(params[:password])
+    if @user && @user.authenticate(login[:password])
       reset_session
       session[:user_id] = @user.id
       redirect_back fallback_location: root_path, allow_other_host: false

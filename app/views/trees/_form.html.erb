@@ -1,13 +1,14 @@
-<%= form.text_field :common_name, help: "This is the plain english name of the tree." %>
-<%= form.text_field :scientific_name, help: "This is the Latin botanical tree name, e.g. Pinus nigra." %>
+<%= form.text_field :common_name %>
+<%= form.text_field :scientific_name %>
 
 <div class="form-group">
-    <label class="sr-only" for="tree_content">Information</label>
+    <label for="tree_content"><%= t "activerecord.attributes.tree.content" %></label>
     <%= form.hidden_field :content %>
     <trix-editor input="tree_content" class="trix-content form-control"></trix-editor>
+    <small class="form-text text-muted"><%= t "activerecord.help.tree.content" %></small>
 </div>
 
-<%= form.text_field :fact, prepend: "Did you know...", help: "This will appear on the home page as a featured fact." %>
+<%= form.text_field :fact, prepend: "Did you know..." %>
 
 <%= form.file_field :images, multiple: true, accept: "image/png,image/gif,image/jpeg" %>
 
