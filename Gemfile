@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '2.7.1'
 
@@ -25,8 +25,11 @@ gem 'webpacker', '~> 5.1.1'
 # Use bootstrap_form for it's Action View helpers to get Bootstrap markup forms
 gem 'bootstrap_form', '~> 4.5.0'
 
+# Adds support for Brotli compressed assets
+gem 'sprockets-exporters_pack', '~> 0.1.2'
+
 # Use to normalise form submissions
-gem "auto_strip_attributes", '~> 2.6'
+gem 'auto_strip_attributes', '~> 2.6'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks', '~> 5'
@@ -41,17 +44,17 @@ gem 'rack-contrib', '~> 2.2.0'
 gem 'aws-sdk-s3', '~> 1.66.0', require: false
 
 # Used to validate Active Storage uploads
-gem "active_storage_validations", '~> 0.8.9'
+gem 'active_storage_validations', '~> 0.8.9'
 
 # Used to transform Active Storage image variants
-gem "image_processing", '~> 1.11'
-gem "ruby-vips", "~> 2.0"
+gem 'image_processing', '~> 1.11'
+gem 'ruby-vips', '~> 2.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.4.6', require: false
 
 # Use lograge to format production logs
-gem "lograge", "~> 0.11.2"
+gem 'lograge', '~> 0.11.2'
 
 ### Pinned dependencies
 
@@ -62,7 +65,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-  gem "dotenv-rails", "~> 2.7"
+  gem 'dotenv-rails', '~> 2.7'
 end
 
 group :development do
@@ -78,6 +81,9 @@ group :development do
   gem 'rcodetools', '~> 0.8.5', require: false
   gem 'rubocop', '~> 0.83.0', require: false
   gem 'reek', '~> 6.0.1', require: false
+
+  # Debugging tool
+  gem 'rbtrace', '~> 0.4.13'
 end
 
 group :test do
@@ -88,5 +94,3 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.3.0'
 end
-
-gem "sprockets-exporters_pack", "~> 0.1.2"
