@@ -79,7 +79,8 @@ group :development do
 
   # Code linting and formatting
   gem 'rcodetools', '~> 0.8.5', require: false
-  gem 'rubocop', '~> 0.83.0', require: false
+  gem 'rubocop', '~> 0.82.0', require: false
+  gem 'code-scanning-rubocop', '~> 0.3.0', require: false
   gem 'reek', '~> 6.0.1', require: false
 
   # Debugging tool
@@ -94,3 +95,5 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.3.0'
 end
+
+
