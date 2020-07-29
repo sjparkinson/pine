@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     return head :bad_request unless params[:password_confirm].blank?
 
     @user = User.new(user_params)
+    @user.email.downcase!
 
     if @user.save
       reset_session

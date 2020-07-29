@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     login = params.require(:user).permit(:email, :password)
 
-    @user = User.find_by(email: login[:email])
+    @user = User.find_by(email: login[:email].downcase)
 
     if @user && @user.authenticate(login[:password])
       reset_session
