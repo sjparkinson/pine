@@ -7,11 +7,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: pine
       app.kubernetes.io/part-of: pine
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
+  replicas: 1
   revisionHistoryLimit: 1
   template:
     metadata:
