@@ -162,7 +162,7 @@ jobs:
         run: kubectl apply -k k8s/
 
       - name: kubectl rollout status
-        run: kubectl rollout status deployment/pine --timeout=3m
+        run: kubectl rollout status deployment/pine --timeout=5m
 
       - name: github deployment success
         uses: actions/github-script@v1
