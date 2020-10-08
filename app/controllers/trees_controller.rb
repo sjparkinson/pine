@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TreesController < ApplicationController
+  skip_before_action :authorized, only: %i[index show]
   before_action :set_tree, only: %i[show edit update destroy destroy_attachment]
   before_action :can_edit, only: %i[edit update destroy destroy_attachment]
 
@@ -11,6 +12,10 @@ class TreesController < ApplicationController
   end
 
   def show
+    if params[:slug] != @tree.common_name.parameterize
+      redirect_to tree_with_slug_path(@tree.common_name.parameterize, @tree)
+    end
+
     fresh_when last_modified: @tree.updated_at.utc, etag: @tree
   end
 

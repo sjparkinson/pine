@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   patch 'account', to: 'users#update'
 
   resources :trees
+  get 'trees/*slug/:id', to: 'trees#show', as: 'tree_with_slug'
 
-  delete '/trees/:id/image/:image_id', to: 'trees#destroy_attachment', as: 'tree_attachment'
+  delete 'trees/:id/image/:image_id', to: 'trees#destroy_attachment', as: 'tree_attachment'
 
   # Handle error pages.
   %w( 404 422 500 503 ).each do |code|

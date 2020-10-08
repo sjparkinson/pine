@@ -35,8 +35,13 @@ class TreesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to tree_url(Tree.last)
   end
 
-  test "should show tree" do
+  test "should redirect to url with slug on show tree" do
     get tree_url(@tree)
+    assert_redirected_to tree_with_slug_url(@tree.common_name.parameterize, @tree)
+  end
+
+  test "should show tree" do
+    get tree_with_slug_url(@tree.common_name.parameterize, @tree)
     assert_response :success
   end
 
