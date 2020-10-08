@@ -25,6 +25,9 @@ gem 'webpacker', '~> 5.1.1'
 # Use bootstrap_form for it's Action View helpers to get Bootstrap markup forms
 gem 'bootstrap_form', '~> 4.5.0'
 
+# Display dates and times in the users local timezone
+gem "local_time", "~> 2.1"
+
 # Adds support for Brotli compressed assets
 gem 'sprockets-exporters_pack', '~> 0.1.2'
 
@@ -55,11 +58,6 @@ gem 'bootsnap', '~> 1.4.6', require: false
 
 # Use lograge to format production logs
 gem 'lograge', '~> 0.11.2'
-
-### Pinned dependencies
-
-# Downgrade concurrent-ruby while it creates a thread on require (https://github.com/ruby-concurrency/concurrent-ruby/issues/868)
-gem 'concurrent-ruby', '1.1.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -95,5 +93,3 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '~> 4.3.0'
 end
-
-

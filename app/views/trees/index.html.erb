@@ -1,5 +1,11 @@
 <h1><%= page_heading "Trees" %></h1>
 
+<p>All trees added to Pine.</p>
+
+<% if current_user -%>
+<%= link_to 'Add a tree', new_tree_path, class: "btn btn-secondary" %>
+<%- end %>
+
 <table class="table mt-4">
     <caption>List of all trees on Pine</caption>
     <thead class="thead-light">
@@ -15,12 +21,8 @@
         <tr>
             <td><%= link_to tree.common_name, tree_with_slug_path(tree.common_name.parameterize, tree) %></td>
             <td><%= tree.user.display_name %></td>
-            <td><time datetime="<%= tree.updated_at.to_formatted_s(:iso8601) %>"><%= l tree.updated_at, format: :short %></time></td>
+            <td><%= local_time_ago tree.updated_at %></td>
         </tr>
         <% end %>
     </tbody>
 </table>
-
-<% if current_user -%>
-<%= link_to 'Add a tree', new_tree_path, class: "btn btn-secondary" %>
-<%- end %>

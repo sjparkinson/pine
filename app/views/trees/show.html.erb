@@ -31,7 +31,7 @@
 </div>
 <%- end %>
 
-<p><i>Added by <%= @tree.user.display_name %>. Last updated <time datetime="<%= @tree.updated_at.to_formatted_s(:iso8601) %>"><%= l @tree.updated_at, format: :short %></time>.</i></p>
+<p><i>Added by <%= @tree.user.display_name %>. Last updated <%= local_time_ago @tree.updated_at %>.</i></p>
 
 <% if @tree.can_edit? current_user -%>
 <%= link_to 'Edit', edit_tree_path(@tree), class: 'btn btn-secondary mr-2' %>

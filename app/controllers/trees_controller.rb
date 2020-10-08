@@ -12,8 +12,9 @@ class TreesController < ApplicationController
   end
 
   def show
-    if params[:slug] != @tree.common_name.parameterize
-      redirect_to tree_with_slug_path(@tree.common_name.parameterize, @tree)
+    tree_slug = @tree.common_name.parameterize
+    if params[:slug] != tree_slug
+      redirect_to tree_with_slug_path(tree_slug, @tree)
     end
 
     fresh_when last_modified: @tree.updated_at.utc, etag: @tree

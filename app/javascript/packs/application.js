@@ -4,16 +4,18 @@
 // that code so it'll be compiled.
 
 import "trix";
-import * as ujs from "@rails/ujs"
-import bsCustomFileInput from 'bs-custom-file-input'
+import * as ujs from "@rails/ujs";
+import bsCustomFileInput from "bs-custom-file-input";
+import LocalTime from "local-time";
 
 ujs.start();
 bsCustomFileInput.init();
+LocalTime.start();
 
 // Trix rich text editor logic.
 addEventListener("trix-file-accept", function (event) {
     // Prevent all attachments for now.
-    event.preventDefault()
+    event.preventDefault();
 
     // // Only allow image attachements.
     // if (!["image/png", "image/jpeg", "image/gif"].includes(event.file.type)) {
