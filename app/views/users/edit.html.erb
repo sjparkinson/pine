@@ -1,4 +1,4 @@
-<h1>Update your account</h1>
+<h1><%= page_heading "Update your account" %></h1>
 
 <%= bootstrap_form_with model: @user, url: account_path do |form| %>
     <%= form.email_field :email %>

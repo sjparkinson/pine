@@ -1,4 +1,4 @@
-<h1>Update <%= @tree.common_name %></h1>
+<h1><%= page_heading "Update #{@tree.common_name}" %></h1>
 
 <%= bootstrap_form_with model: @tree do |form| %>
     <%= render partial: "form", locals: { form: form } %>
