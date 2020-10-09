@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    fresh_when last_modified: @user.updated_at.utc, etag: @user
+    fresh_when @user
   end
 
   def create

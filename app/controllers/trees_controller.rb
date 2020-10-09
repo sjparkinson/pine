@@ -8,16 +8,17 @@ class TreesController < ApplicationController
   def index
     @trees = Tree.includes(:user).all.order(updated_at: :desc)
 
-    fresh_when last_modified: @trees.maximum(:updated_at).utc, etag: @trees unless @trees.empty?
+    fresh_when @trees
   end
 
   def show
     tree_slug = @tree.common_name.parameterize
+
     if params[:slug] != tree_slug
       redirect_to tree_with_slug_path(tree_slug, @tree)
     end
 
-    fresh_when last_modified: @tree.updated_at.utc, etag: @tree
+    fresh_when @tree
   end
 
   def new
@@ -25,7 +26,7 @@ class TreesController < ApplicationController
   end
 
   def edit
-    fresh_when last_modified: @tree.updated_at.utc, etag: @tree
+    fresh_when @tree
   end
 
   def create
