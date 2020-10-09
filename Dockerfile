@@ -15,8 +15,8 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get update && apt-get install -y --no-install-recommends \
     nodejs \
     libvips \
-    postgresql-client \
-    && rm -rf /var/lib/apt/lists/* && \
+    postgresql-client && \
+    rm -rf /var/lib/apt/lists/* && \
     npm install -g yarn && \
     mkdir -p tmp/pids
 

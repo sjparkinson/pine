@@ -30,5 +30,8 @@ module Pine
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Allow setting the application log level using an environment variable.
+    config.log_level = ENV.fetch('LOG_LEVEL', 'debug').to_sym
   end
 end
