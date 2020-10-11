@@ -81,3 +81,5 @@ test:
 #
 production:
   <<: *default
+  # Prepared statements are not supported by the transaction pool mode.
+  prepared_statements: false
